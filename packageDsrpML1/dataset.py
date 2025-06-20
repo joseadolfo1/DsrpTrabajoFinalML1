@@ -27,3 +27,11 @@ def main(
 
 if __name__ == "__main__":
     app()
+
+
+import kagglehub
+
+# Download latest version
+path = kagglehub.dataset_download("alexandrepetit881234/fake-bills")
+
+print("Path to dataset files:", path)
