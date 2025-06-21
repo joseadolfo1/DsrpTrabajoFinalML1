@@ -2,10 +2,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+from packageDsrpML1.config import REPORTS_DIR
 
 def metricas(predicciones, y_test, model):
+    nombre = type(model).__name__
     print("*********************************************************************")
-    print(f"Mostrando Metricas pre-establecidas del modelo {type(model).__name__}")
+    print(f"Mostrando Metricas para el modelo {nombre}")
     print("*********************************************************************")
     
     #print(self.predictions)
@@ -13,7 +16,9 @@ def metricas(predicciones, y_test, model):
     cm = confusion_matrix(y_test, predicciones)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm)
     disp.plot()
-    disp.ax_.set_title(f"Matriz de Confusión: {type(model).__name__}")
+    disp.ax_.set_title(f"Matriz de Confusión: {nombre}")
+    plt.savefig(f"{REPORTS_DIR}/matriz_confusion_de_{nombre}.png", dpi=300, bbox_inches='tight')
+    print(f"Imagen gurdada en {REPORTS_DIR}")
 
 class MLProc:
 
