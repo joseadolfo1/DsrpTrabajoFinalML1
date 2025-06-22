@@ -1,10 +1,36 @@
-# DsrpTrabajoFinal_ML1
+# dsrp-mle-1
 
 <a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
     <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
 </a>
 
-Este es el trabajo final del modulo ML1 del programa de epecializado en Machine Learning Engineer
+Trabajo Final para el curso de MLE1
+
+##  Problema de ML
+Se busca identificar si un billete es verdadero o falso en base a diferentes dimensiones del billete. El Modelo que se entrenara sera un Regresor Logistico y se comparara con los de Kmeans + PCA.
+
+## Diagrama de flujo del proyecto
+
+```mermaid
+flowchart TB
+A[Carga del Dataset] --> B[Pre-procesamiento de la data]
+B --> C[Split en data de entrenamiento y test]
+C --> D[Entrenamiento de Modelo]
+D --> E[Muestra de Metricas]
+E --> F[Guardado de Modelo]
+```
+
+## Diccionario de datos
+El dataset consta de 1500 filas con 7 columnas.
+|  cabecera      |tipo         |
+|----------------|-------------|
+|**is_genuine**  |boolean      |
+|**diagonal**  |float      |
+|**height_left**  |float      |
+|**height_right**  |float      |
+|**margin_low**  |float      |
+|**margin_upper**  |float      |
+|**length**  |float|
 
 ## Project Organization
 
@@ -12,13 +38,8 @@ Este es el trabajo final del modulo ML1 del programa de epecializado en Machine 
 ├── LICENSE            <- Open-source license if one is chosen
 ├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
 ├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+├── data               <- Dataset for this work.
 │
-├── docs               <- A default mkdocs project; see www.mkdocs.org for details
 │
 ├── models             <- Trained and serialized models, model predictions, or model summaries
 │
@@ -27,7 +48,7 @@ Este es el trabajo final del modulo ML1 del programa de epecializado en Machine 
 │                         `1.0-jqp-initial-data-exploration`.
 │
 ├── pyproject.toml     <- Project configuration file with package metadata for 
-│                         packageDsrpML1 and configuration for tools like black
+│                         package_dsrp_mle1 and configuration for tools like black
 │
 ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
 │
@@ -39,9 +60,9 @@ Este es el trabajo final del modulo ML1 del programa de epecializado en Machine 
 │
 ├── setup.cfg          <- Configuration file for flake8
 │
-└── packageDsrpML1   <- Source code for use in this project.
+└── package_dsrp_mle1   <- Source code for use in this project.
     │
-    ├── __init__.py             <- Makes packageDsrpML1 a Python module
+    ├── __init__.py             <- Makes package_dsrp_mle1 a Python module
     │
     ├── config.py               <- Store useful variables and configuration
     │
@@ -59,3 +80,51 @@ Este es el trabajo final del modulo ML1 del programa de epecializado en Machine 
 
 --------
 
+# Model Card
+
+## Metadata
+
+- **Library**: scikit-learn
+- **Tags**: # Logistic regression, classification
+
+## Authors
+
+- José Adolfo Cusihuallpa
+
+## Framework
+
+scikit-learn, JupiterLab
+
+## Intended Uses
+
+Este modelo clasifica billetes en 2 clases (legitino - no legitimo).
+
+## Limitations
+
+Solo se ha entrenado con un data set de 1500 muestras. (https://www.kaggle.com/datasets/alexandrepetit881234/fake-bills)
+
+## Model Description
+
+Regresor Logistico entrenado con los valores por defecto de LogisticRegression() de scikit-learn.
+
+## Visualización del Modelo
+
+Aquí hay una matriz de confusión generada con la evaluacion de los valores de test.
+
+![Matriz de Confusión](./reports/matriz_confusion_de_MLProc.png)
+
+
+## Resultados
+
+Matriz de confusion de ambos modelos:
+
+**Modelo entenado con regresor logistico**
+![Matriz confusion Regreso Logistico](./reports/matriz_confusion_de_MLProc.png)
+
+
+**Modelo entenado con aplicando PCA+KMeans**
+![Matriz confusion Kmeans](./reports/matriz_confusion_de_KMeans.png)
+
+## Conclusiones
+
+De los resultados de ambos modelos se ve que el Modelo Trabajado con Regresor Logistico presenta mejores resultados que al que se entreno con PCA+KMeans. Esto no nesesariamente indica que no se pueda aplicar PCA+KMeans al dataset de este trabajo, el mal resultado del segundo modelo puede ser por que no se aplicaron mas etapas previas de preprocesamiento de la data asi tambien como elegir otros valoroes de los hiperparametros.

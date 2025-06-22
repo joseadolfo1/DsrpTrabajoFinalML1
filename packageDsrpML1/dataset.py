@@ -1,29 +1,18 @@
 from pathlib import Path
-
+import pandas as pd
 from loguru import logger
-from tqdm import tqdm
-import typer
-
-from packageDsrpML1.config import PROCESSED_DATA_DIR, RAW_DATA_DIR
-
-app = typer.Typer()
+from packageDsrpML1.config import CSV_FILE
 
 
-@app.command()
-def main(
-    # ---- REPLACE DEFAULT PATHS AS APPROPRIATE ----
-    input_path: Path = RAW_DATA_DIR / "dataset.csv",
-    output_path: Path = PROCESSED_DATA_DIR / "dataset.csv",
-    # ----------------------------------------------
-):
-    # ---- REPLACE THIS WITH YOUR OWN CODE ----
-    logger.info("Processing dataset...")
-    for i in tqdm(range(10), total=10):
-        if i == 5:
-            logger.info("Something happened for iteration 5.")
-    logger.success("Processing dataset complete.")
-    # -----------------------------------------
+def load_csv(path: Path = CSV_FILE) -> pd.DataFrame:
+    logger.info(f"Cargando CSV desde: {path}")
+   
+    df = pd.read_csv(path, sep=";")
+    logger.success(f"CSV cargado correctamente con shape {df.shape}")
+    return df
 
 
 if __name__ == "__main__":
-    app()
+    data = load_csv()
+    print(data)
+
