@@ -79,16 +79,51 @@ El dataset consta de 1500 filas con 7 columnas.
 ```
 
 --------
+
+# Model Card
+
+## Metadata
+
+- **Library**: scikit-learn
+- **Tags**: # Logistic regression, classification
+
+## Authors
+
+- José Adolfo Cusihuallpa
+
+## Framework
+
+scikit-learn, JupiterLab
+
+## Intended Uses
+
+Este modelo clasifica billetes en 2 clases (legitino - no legitimo).
+
+## Limitations
+
+Solo se ha entrenado con un data set de 1500 muestras. (https://www.kaggle.com/datasets/alexandrepetit881234/fake-bills)
+
+## Model Description
+
+Regresor Logistico entrenado con los valores por defecto de LogisticRegression() de scikit-learn.
+
+## Visualización del Modelo
+
+Aquí hay una matriz de confusión generada con la evaluacion de los valores de test.
+
+![Matriz de Confusión](./reports/matriz_confusion_de_MLProc.png)
+
+
 ## Resultados
 
 Matriz de confusion de ambos modelos:
 
 **Modelo entenado con regresor logistico**
-![Matriz confusion Regreso Logistico](./reports/matriz_confusion_de_MLProc.png "Text under the image")
+![Matriz confusion Regreso Logistico](./reports/matriz_confusion_de_MLProc.png)
 
 
 **Modelo entenado con aplicando PCA+KMeans**
-![Matriz confusion Kmeans](./reports/matriz_confusion_de_KMeans.png "Text under the image")
+![Matriz confusion Kmeans](./reports/matriz_confusion_de_KMeans.png)
 
 ## Conclusiones
 
